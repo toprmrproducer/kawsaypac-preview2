@@ -26,7 +26,7 @@
 
   gsap.set([forestBeat,waterBeat,finalCopy],{autoAlpha:0,y:32});
   gsap.set(finalPieces,{autoAlpha:0,y:16});
-  gsap.set(landscape,{autoAlpha:0,scale:1.08});
+  gsap.set(landscape,{opacity:0,scale:1.08});
   gsap.set(landscapeMaster,{scale:1.14});
   gsap.set([ridgeWide,ridgeLeft,ridgeRight],{yPercent:34,autoAlpha:0});
   gsap.set(mountain,{xPercent:-50,yPercent:38,autoAlpha:0,scale:.92});
@@ -50,14 +50,14 @@
     .to(forestBeat,{autoAlpha:1,y:0,duration:4,ease:'power2.out'},14)
     .to(forestBeat,{autoAlpha:1,duration:8},18)
     .to(forestBeat,{autoAlpha:0,y:-22,duration:4},26)
-    .to(jungleMaster,{autoAlpha:0,scale:1.24,duration:17,ease:'power2.inOut'},27)
+    .to(jungleMaster,{opacity:0,scale:1.24,duration:17,ease:'power2.inOut'},27)
     .to(forestFrame,{xPercent:0,yPercent:8,scale:1.45,autoAlpha:.22,duration:20,ease:'power2.inOut'},28)
     .to(canopy,{xPercent:34,yPercent:20,scale:1.32,autoAlpha:.2,duration:20,ease:'power2.inOut'},28)
     .to(philodendron,{xPercent:-34,yPercent:-18,scale:1.3,autoAlpha:.18,duration:20,ease:'power2.inOut'},28)
     .to(bromeliads,{yPercent:-40,scale:1.28,autoAlpha:.1,duration:18,ease:'power2.inOut'},28)
     .to(orchid,{xPercent:-25,yPercent:28,autoAlpha:0,duration:15},30)
     .to([snake,toucan],{autoAlpha:0,scale:1.12,duration:12},31)
-    .to(landscape,{autoAlpha:1,scale:1.035,duration:18,ease:'power2.inOut'},28)
+    .to(landscape,{opacity:1,scale:1.035,duration:18,ease:'power2.inOut'},28)
     .to([ridgeWide,ridgeLeft,ridgeRight],{yPercent:0,autoAlpha:.62,duration:18,ease:'power2.out'},30)
     .to(mountain,{yPercent:0,autoAlpha:.84,scale:1,duration:20,ease:'power2.out'},31)
     .to(river,{yPercent:0,autoAlpha:.72,scale:1,duration:19,ease:'power2.out'},34)
@@ -66,8 +66,8 @@
     .to(waterBeat,{autoAlpha:1,y:0,duration:4,ease:'power2.out'},39)
     .to(waterBeat,{autoAlpha:1,duration:12},43)
     .to(waterBeat,{autoAlpha:0,y:-22,duration:4},55)
-    .to(jungle,{autoAlpha:0,duration:10},48)
-    .to(landscape,{autoAlpha:1,scale:1,duration:16,ease:'power2.inOut'},50)
+    .to(jungle,{opacity:0,duration:10},48)
+    .to(landscape,{opacity:1,scale:1,duration:16,ease:'power2.inOut'},50)
     .to([ridgeWide,ridgeLeft,ridgeRight,mountain,river],{autoAlpha:0,duration:12,ease:'power1.inOut'},56)
     .to(clouds,{xPercent:8,autoAlpha:.18,duration:14},56)
     .to(mist,{xPercent:-12,autoAlpha:.12,duration:14},56)
