@@ -19,6 +19,11 @@
   const forestBeat=q('.journey-beat-forest'),waterBeat=q('.journey-beat-water'),finalCopy=q('.journey-final'),progress=q('.journey-progress span');
   const finalPieces=finalCopy.querySelectorAll('.eyebrow,h2,p,.hero-actions,.journey-trust');
 
+  // Lock every animated layer onto its own GPU compositing layer for the whole scrub
+  // so GSAP never strips translateZ mid-timeline (the source of the scroll flicker).
+  const allLayers=[landscape,landscapeMaster,ridgeWide,ridgeLeft,ridgeRight,mountain,river,clouds,mist,jungle,jungleMaster,canopy,philodendron,bromeliads,orchid,snake,toucan,forestFrame,brand,forestBeat,waterBeat,finalCopy];
+  gsap.set(allLayers,{force3D:true,willChange:'transform,opacity'});
+
   gsap.set([forestBeat,waterBeat,finalCopy],{autoAlpha:0,y:32});
   gsap.set(finalPieces,{autoAlpha:0,y:16});
   gsap.set(landscape,{autoAlpha:0,scale:1.08});
@@ -31,7 +36,7 @@
   gsap.set(jungleMaster,{scale:1.04});
   gsap.set(progress,{scaleY:0,transformOrigin:'top'});
 
-  const tl=gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:hero,start:'top top',end:()=>`+=${Math.round(innerHeight*4.15)}`,pin:sticky,scrub:.85,anticipatePin:1,invalidateOnRefresh:true}});
+  const tl=gsap.timeline({defaults:{ease:'none',force3D:true},scrollTrigger:{trigger:hero,start:'top top',end:()=>`+=${Math.round(innerHeight*4.15)}`,pin:sticky,scrub:.85,anticipatePin:1,invalidateOnRefresh:true}});
   tl.to(progress,{scaleY:1,duration:100},0)
     .to(brand,{autoAlpha:0,y:-24,duration:6},8)
     .to(jungleMaster,{scale:1.17,yPercent:-2,duration:20,ease:'power1.inOut'},8)
@@ -74,7 +79,7 @@
   if(matchMedia('(hover: hover) and (pointer: fine)').matches){
     sticky.addEventListener('pointermove',event=>{
       const x=(event.clientX/innerWidth-.5)*2,y=(event.clientY/innerHeight-.5)*2;
-      gsap.to(finalCopy,{x:x*5,y:y*3,duration:.8,overwrite:'auto'});
+      gsap.to(finalCopy,{x:x*5,y:y*3,duration:.8,force3D:true,overwrite:'auto'});
     },{passive:true});
   }
 })();
