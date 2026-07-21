@@ -67,8 +67,11 @@
 .journey-static .j3-s2,.journey-static .j3-s3{display:none}
 
 /* v28: display title between clouds and peak */
-.j3-title{position:absolute;left:50%;top:26%;transform:translateX(-50%);z-index:2;
+.j3-title{position:absolute;left:50%;top:30%;transform:translate(-50%,-50%);z-index:2;
   font-family:'Fraunces','Cormorant Garamond',Georgia,serif;font-weight:500;
-  font-size:clamp(90px,13vw,240px);letter-spacing:.02em;color:#fdf9ee;
+  font-size:clamp(46px,6.6vw,126px);letter-spacing:.03em;color:#fdf9ee;
   text-shadow:0 4px 40px rgba(30,40,30,.35), 0 0 90px rgba(255,244,214,.4);
   white-space:nowrap;pointer-events:none}
+/* the nested title replaces the old center wordmark */
+.journey-preview .journey-brand strong{display:none}
+.journey-preview .journey-brand{top:18%}
