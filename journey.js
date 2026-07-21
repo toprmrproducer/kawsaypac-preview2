@@ -62,8 +62,8 @@
 
     /* Phase B (26-55): descend. Valley assembles beneath; the close peak dissolves into the wide scene. */
     .to(landscape,{opacity:1,scale:1.035,duration:16,ease:'power2.inOut'},26)
-    .to(peak,{scale:.62,yPercent:-16,autoAlpha:0,duration:16,ease:'power2.inOut'},27)
-    .to(sky,{autoAlpha:0,duration:12,ease:'power1.inOut'},30)
+    .to(peak,{scale:.85,yPercent:-40,autoAlpha:0,duration:10,ease:'power2.in'},26)
+    .to(sky,{autoAlpha:0,duration:10,ease:'power1.inOut'},28)
     .to([ridgeWide,ridgeLeft,ridgeRight],{yPercent:0,autoAlpha:.62,duration:18,ease:'power2.out'},28)
     .to(mountain,{yPercent:0,autoAlpha:.84,scale:1,duration:20,ease:'power2.out'},29)
     .to(river,{yPercent:0,autoAlpha:.72,scale:1,duration:19,ease:'power2.out'},31)
