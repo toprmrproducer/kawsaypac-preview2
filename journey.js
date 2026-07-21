@@ -9,71 +9,80 @@
 
   gsap.registerPlugin(ScrollTrigger);
   const q=s=>hero.querySelector(s);
+  const L=n=>hero.querySelector(`[data-l="${n}"]`);
   const brand=q('.journey-brand');
-  const landscape=q('.journey-landscape'),landscapeMaster=q('.journey-landscape-master');
-  const ridgeWide=q('.journey-ridge-wide'),ridgeLeft=q('.journey-ridge-left'),ridgeRight=q('.journey-ridge-right');
-  const mountain=q('.journey-mountain'),river=q('.journey-river'),clouds=q('.journey-clouds'),mist=q('.journey-mist');
-  const jungle=q('.journey-jungle'),jungleMaster=q('.journey-jungle-master');
-  const canopy=q('.journey-canopy'),philodendron=q('.journey-philodendron'),bromeliads=q('.journey-bromeliads'),orchid=q('.journey-orchid');
-  const forestFrame=q('.journey-forest-frame');
-  const summitBeat=q('.journey-beat-forest'),waterBeat=q('.journey-beat-water'),finalCopy=q('.journey-final'),progress=q('.journey-progress span');
+  const s1=q('.j3-s1'), s2=q('.j3-s2'), s3=q('.j3-s3');
+  const s1peak=L('s1-peak'), s1cloud=L('s1-cloud'), s1shoulder=L('s1-shoulder'), s1sky=L('s1-sky');
+  const s2base=L('s2-base'), s2ridgeL=L('s2-ridgeL'), s2ridgeR=L('s2-ridgeR'), s2river=L('s2-river');
+  const s2cotopaxi=L('s2-cotopaxi'), s2c2=L('s2-cloud2'), s2c3=L('s2-cloud3'), s2c4=L('s2-cloud4');
+  const s3base=L('s3-base'), s3frame=L('s3-frame'), s3philo=L('s3-philo'), s3canopy=L('s3-canopy'), s3brome=L('s3-brome');
+  const summitBeat=q('.journey-beat-forest'), waterBeat=q('.journey-beat-water'), finalCopy=q('.journey-final'), progress=q('.journey-progress span');
   const finalPieces=finalCopy.querySelectorAll('.eyebrow,h2,p,.hero-actions,.journey-trust');
 
-  // GPU-lock every animated layer for the whole scrub (prevents translateZ strip flicker).
-  const allLayers=[landscape,landscapeMaster,ridgeWide,ridgeLeft,ridgeRight,mountain,river,clouds,mist,jungle,jungleMaster,canopy,philodendron,bromeliads,orchid,forestFrame,brand,summitBeat,waterBeat,finalCopy];
-  gsap.set(allLayers,{force3D:true,willChange:'transform,opacity'});
+  const all=[s1,s2,s3,s1peak,s1cloud,s1shoulder,s1sky,s2base,s2ridgeL,s2ridgeR,s2river,s2cotopaxi,s2c2,s2c3,s2c4,s3base,s3frame,s3philo,s3canopy,s3brome,brand,summitBeat,waterBeat,finalCopy];
+  gsap.set(all,{force3D:true,willChange:'transform,opacity'});
 
-  /* ============ REVERSED JOURNEY: Cotopaxi summit -> valley -> living forest ============ */
+  /* ===== Shreyas's Figma comps: scene1 (peak zoom) -> scene2 (valley) -> scene3 (jungle assembly) ===== */
   gsap.set([summitBeat,waterBeat,finalCopy],{autoAlpha:0,y:32});
   gsap.set(finalPieces,{autoAlpha:0,y:16});
-  // Opening state: we are AT the peak. Sky full, peak close and large.
-  // Sequence 1 opening: ONE scene, zoomed onto the volcano. No overlays, no second mountain.
-  gsap.set(landscape,{opacity:1,scale:1});
-  gsap.set(landscapeMaster,{scale:1.6,yPercent:16,transformOrigin:'50% 26%'});
-  gsap.set([ridgeWide,ridgeLeft,ridgeRight,mountain],{autoAlpha:0});
-  gsap.set(river,{yPercent:0,autoAlpha:0,scale:1});
-  gsap.set(clouds,{xPercent:-4,autoAlpha:.35});
-  gsap.set(mist,{xPercent:4,autoAlpha:.3});
-  // Jungle waits dispersed off-frame: sprites assemble at the end (never a flat zoom-out).
-  gsap.set(jungle,{opacity:0});
-  gsap.set(jungleMaster,{opacity:0,scale:1.26});
-  gsap.set(forestFrame,{yPercent:10,scale:1.5,autoAlpha:0});
-  gsap.set(canopy,{xPercent:36,yPercent:22,scale:1.34,autoAlpha:0});
-  gsap.set(philodendron,{xPercent:-36,yPercent:-20,scale:1.32,autoAlpha:0});
-  gsap.set(bromeliads,{yPercent:-42,scale:1.3,autoAlpha:0});
-  gsap.set(orchid,{xPercent:-27,yPercent:30,scale:1.14,autoAlpha:0});
+
+  /* Scene 1 opens ZOOMED on the peak (his comp, peak right-center), pulls back to the exact Figma layout */
+  gsap.set(s1,{opacity:1,scale:1.7,transformOrigin:'62% 40%'});
+  gsap.set(s1cloud,{xPercent:-6,opacity:.9});
+
+  /* Scene 2 waits hidden; its layers slightly displaced so they settle INTO his layout */
+  gsap.set(s2,{opacity:0});
+  gsap.set(s2base,{scale:1.08,transformOrigin:'50% 40%'});
+  gsap.set(s2cotopaxi,{yPercent:10,opacity:0});
+  gsap.set([s2ridgeL,s2ridgeR],{yPercent:16,opacity:0});
+  gsap.set(s2river,{yPercent:14,opacity:0});
+  gsap.set([s2c2,s2c3,s2c4],{opacity:0});
+
+  /* Scene 3 sprites dispersed off-frame, assemble at the end */
+  gsap.set(s3,{opacity:0});
+  gsap.set(s3base,{scale:1.12,transformOrigin:'50% 55%'});
+  gsap.set(s3frame,{scale:1.3,opacity:0});
+  gsap.set(s3philo,{xPercent:-40,yPercent:-16,opacity:0});
+  gsap.set(s3canopy,{xPercent:38,yPercent:-14,opacity:0});
+  gsap.set(s3brome,{yPercent:-46,opacity:0});
   gsap.set(progress,{scaleY:0,transformOrigin:'top'});
 
   const tl=gsap.timeline({defaults:{ease:'none',force3D:true},scrollTrigger:{trigger:hero,start:'top top',end:()=>`+=${Math.round(innerHeight*4.15)}`,pin:sticky,scrub:.85,anticipatePin:1,invalidateOnRefresh:true}});
   tl.to(progress,{scaleY:1,duration:100},0)
 
-    /* Sequence 1 (0-55): zoomed on the mountain, slow continuous pull-back. Nothing else. */
+    /* Sequence 1 (0-40): pull back from the peak to his composed summit frame */
     .to(brand,{autoAlpha:0,y:-24,duration:6},8)
-    .to(landscapeMaster,{scale:1.0,yPercent:0,duration:52,ease:'power1.inOut'},2)
-    .to(river,{autoAlpha:.5,duration:14,ease:'power1.out'},20)
-    .to(clouds,{xPercent:2,autoAlpha:.45,duration:30,ease:'power1.inOut'},10)
-    .to(mist,{xPercent:-4,autoAlpha:.35,duration:30,ease:'power1.inOut'},10)
+    .to(s1,{scale:1.0,duration:38,ease:'power1.inOut'},2)
+    .to(s1cloud,{xPercent:4,duration:38,ease:'none'},2)
     .to(summitBeat,{autoAlpha:1,y:0,duration:4,ease:'power2.out'},10)
-    .to(summitBeat,{autoAlpha:1,duration:10},14)
-    .to(summitBeat,{autoAlpha:0,y:-22,duration:4},26)
-    .to(waterBeat,{autoAlpha:1,y:0,duration:4,ease:'power2.out'},36)
-    .to(waterBeat,{autoAlpha:1,duration:10},40)
-    .to(waterBeat,{autoAlpha:0,y:-22,duration:4},50)
+    .to(summitBeat,{autoAlpha:1,duration:8},14)
+    .to(summitBeat,{autoAlpha:0,y:-22,duration:4},24)
 
-    /* Phase C (55-100): the forest ASSEMBLES around us, sprite by sprite. */
-    .to(jungle,{opacity:1,duration:8},54)
-    .to(landscape,{opacity:0,scale:1.06,duration:14,ease:'power2.inOut'},58)
-    .to(jungleMaster,{opacity:1,scale:1.06,duration:18,ease:'power2.inOut'},56)
-    .to(forestFrame,{yPercent:0,scale:1.12,autoAlpha:1,duration:18,ease:'power2.out'},58)
-    .to(canopy,{xPercent:11,yPercent:8,scale:1.1,autoAlpha:1,duration:18,ease:'power2.out'},59)
-    .to(philodendron,{xPercent:-11,yPercent:-5,scale:1.08,autoAlpha:1,duration:18,ease:'power2.out'},60)
-    .to(bromeliads,{yPercent:-12,scale:1.08,autoAlpha:1,duration:17,ease:'power2.out'},61)
-    .to(orchid,{xPercent:-8,yPercent:10,scale:1.12,autoAlpha:1,duration:16,ease:'power2.out'},62)
-    .to(jungleMaster,{scale:1.0,yPercent:0,duration:16,ease:'power1.inOut'},74)
-    .to([canopy,philodendron,bromeliads,orchid,forestFrame],{scale:'-=.03',duration:16,ease:'power1.inOut'},74)
-    .to(finalCopy,{autoAlpha:1,y:0,duration:7,ease:'power2.out'},72)
-    .to(finalPieces,{autoAlpha:1,y:0,stagger:.5,duration:4.5,ease:'power2.out'},72)
-    .to(finalCopy,{autoAlpha:1,duration:20},80);
+    /* Crossfade into Scene 2: valley layers settle into his exact layout */
+    .to(s1,{opacity:0,scale:1.06,duration:12,ease:'power1.inOut'},40)
+    .to(s2,{opacity:1,duration:10,ease:'power1.out'},38)
+    .to(s2base,{scale:1.0,duration:20,ease:'power2.out'},38)
+    .to(s2cotopaxi,{yPercent:0,opacity:1,duration:14,ease:'power2.out'},40)
+    .to([s2ridgeL,s2ridgeR],{yPercent:0,opacity:1,duration:14,ease:'power2.out'},43)
+    .to(s2river,{yPercent:0,opacity:1,duration:13,ease:'power2.out'},45)
+    .to([s2c2,s2c3,s2c4],{opacity:1,duration:12,ease:'power1.out'},46)
+    .to([s2c2,s2c3],{xPercent:3,duration:22,ease:'none'},48)
+    .to(s2c4,{xPercent:-3,duration:22,ease:'none'},48)
+    .to(waterBeat,{autoAlpha:1,y:0,duration:4,ease:'power2.out'},48)
+    .to(waterBeat,{autoAlpha:1,duration:8},52)
+    .to(waterBeat,{autoAlpha:0,y:-22,duration:4},60)
+
+    /* Scene 3: jungle assembles sprite by sprite into his comp */
+    .to(s2,{opacity:0,scale:1.05,duration:12,ease:'power1.inOut'},64)
+    .to(s3,{opacity:1,duration:9,ease:'power1.out'},62)
+    .to(s3base,{scale:1.0,duration:18,ease:'power2.out'},62)
+    .to(s3frame,{scale:1.0,opacity:1,duration:16,ease:'power2.out'},64)
+    .to(s3philo,{xPercent:0,yPercent:0,opacity:1,duration:15,ease:'power2.out'},66)
+    .to(s3canopy,{xPercent:0,yPercent:0,opacity:1,duration:15,ease:'power2.out'},68)
+    .to(s3brome,{yPercent:0,opacity:1,duration:14,ease:'power2.out'},70)
+    .to(finalCopy,{autoAlpha:1,y:0,duration:7,ease:'power2.out'},80)
+    .to(finalPieces,{autoAlpha:1,y:0,stagger:.5,duration:4.5,ease:'power2.out'},80)
+    .to(finalCopy,{autoAlpha:1,duration:14},88);
 
   if(matchMedia('(hover: hover) and (pointer: fine)').matches){
     sticky.addEventListener('pointermove',event=>{
