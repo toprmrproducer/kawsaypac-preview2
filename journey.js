@@ -8,6 +8,9 @@
   if(reduce||mobile||!window.gsap||!window.ScrollTrigger){hero.classList.add('journey-static');return}
 
   gsap.registerPlugin(ScrollTrigger);
+  // hydrate deferred scene 2/3 layers without blocking first paint
+  const hydrate=()=>document.querySelectorAll('img.j3l[data-src]').forEach(im=>{im.src=im.dataset.src;im.removeAttribute('data-src')});
+  if(document.readyState==='complete')hydrate();else addEventListener('load',hydrate,{once:true});
   const q=s=>hero.querySelector(s);
   const L=n=>hero.querySelector(`[data-l="${n}"]`);
   const brand=q('.journey-brand');
