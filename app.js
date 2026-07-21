@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   const $=(s,c=document)=>c.querySelector(s);const $$=(s,c=document)=>Array.from(c.querySelectorAll(s));
-  const sprout='<img class="sprout" src="assets/sprites/herb-icons/guayusa-sprig.webp?v=17" alt="" aria-hidden="true">';
+  const sprout='<img class="sprout" src="assets/sprites/herb-icons/guayusa-sprig.webp?v=32" alt="" aria-hidden="true">';
   const concerns=[['All Products','all'],["Women's Wellness",'womens-wellness'],["Men's Wellness",'mens-wellness'],['Digestive Health','digestive-health'],['Auto-Immune Support','auto-immune-support'],['Nervous System','nervous-system'],['Energy & Vitality','energy-vitality'],['Joint & Mobility','joint-mobility'],['Heart Health','heart-health'],['Liver Support','liver-support'],['Kidney Support','kidney-support'],['Lung Support','lung-support'],['Hormone Balance','hormone-balance'],['Sleep & Relaxation','sleep-relaxation'],['Full Body Detox','full-body-detox']];
   const products=[
     {slug:'river-of-life',name:'River of Life',tag:'Heart Health',concerns:'heart-health lung-support',price:'$34.00',image:'assets/img/blend-river-of-life.webp',desc:'A grounding daily botanical blend for a steady whole-body ritual.',benefits:['Daily foundational ritual','Whole botanicals','Direct Ecuador sourcing'],ingredients:'A rotating whole-herb formulation. Refer to the current pouch for the exact ingredient list and preparation directions.'},
@@ -94,7 +94,7 @@
       const d=data[trigger.dataset.pop];if(!d)return;clearTimeout(hideTimer);
       if(active&&active!==trigger)active.setAttribute('aria-expanded','false');
       active=trigger;trigger.setAttribute('aria-expanded','true');
-      pop.innerHTML=`<img class="mini-pop-photo" src="${d.img}?v=25" alt=""><div class="mini-pop-copy"><p>${d.line}</p><a href="${d.href}">${d.label}</a></div><img class="mini-pop-leaf" src="assets/sprites/herb-icons/guayusa-sprig.webp?v=25" alt="">`;
+      pop.innerHTML=`<img class="mini-pop-photo" src="${d.img}?v=25" alt=""><div class="mini-pop-copy"><p>${d.line}</p><a href="${d.href}">${d.label}</a></div><img class="mini-pop-leaf" src="assets/sprites/herb-icons/guayusa-sprig.webp?v=32" alt="">`;
       pop.hidden=false;
       const r=trigger.getBoundingClientRect(),w=Math.min(300,innerWidth-24);
       pop.style.width=w+'px';
