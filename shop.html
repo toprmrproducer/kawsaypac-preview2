@@ -11,12 +11,12 @@
     <meta property="og:title" content="Shop Herbal Teas and Blends | Kawsaypac">
     <meta property="og:description" content="Explore the live Kawsaypac apothecary and check out securely through Shopify.">
     <meta property="og:url" content="https://theelectriceats.com/collections/all">
-    <link rel="stylesheet" href="styles.css?v=18">
-    <link rel="stylesheet" href="home.css?v=18">
+    <link rel="stylesheet" href="styles.css?v=25">
+    <link rel="stylesheet" href="home.css?v=25">
     <link rel="stylesheet" href="shopify-storefront.css?v=18">
-    <link rel="stylesheet" href="shop.css?v=18">
+    <link rel="stylesheet" href="shop.css?v=25">
     <script type="module" data-storefront-components src="https://cdn.shopify.com/storefront/web-components.js"></script>
-    <script defer src="app.js?v=18"></script>
+    <script defer src="app.js?v=25"></script>
     <script defer src="shopify-storefront.js?v=18"></script>
     <script defer src="shop.js?v=18"></script>
   </head>
@@ -28,8 +28,8 @@
 
     <main id="main">
       <section class="shop-hero" aria-labelledby="shop-title">
-        <img class="shop-float left" src="assets/sprites/herb-icons/cats-claw-vine.webp?v=18" alt="">
-        <img class="shop-float right" src="assets/sprites/herb-icons/passionflower-vine.webp?v=18" alt="">
+        <img class="shop-accent shop-accent--left" src="assets/sprites/herb-icons/cats-claw-vine.webp?v=25" alt="">
+        <img class="shop-accent shop-accent--right" src="assets/sprites/herb-icons/passionflower-vine.webp?v=25" alt="">
         <div class="shop-hero__content">
           <p class="eyebrow">The Kawsaypac Apothecary</p>
           <h1 id="shop-title">Where wild Ecuador becomes <span class="accent">ritual.</span></h1>
@@ -38,6 +38,7 @@
             <a class="btn btn-secondary" href="#live-apothecary">Browse physical herbs</a>
             <button class="storefront-cart-button" type="button" onclick="window.KawsaypacStorefront.openCart()">Open bag</button>
           </div>
+          <p class="shop-proof"><span class="star" aria-hidden="true">&#9733;</span><span><strong>4.9</strong> average rating &#183; <strong>1,000+</strong> orders shipped</span></p>
           <nav class="shop-hero__index" aria-label="Shop categories">
             <a href="#live-apothecary"><span>01</span>Herbs &amp; blends</a>
             <a href="#ebooks"><span>02</span>E-books</a>
@@ -50,7 +51,7 @@
         <div class="shop-heading">
           <div>
             <p class="eyebrow">Physical Apothecary · Live from Shopify</p>
-            <h2 id="apothecary-title">Herbs, blends, and bundles for the daily ritual.</h2>
+            <h2 id="apothecary-title"><span data-pop="herbs">Herbs</span>, <span data-pop="blends">blends</span>, and <span data-pop="bundles">bundles</span> for the daily ritual.</h2>
           </div>
           <p>This shelf contains physical botanicals only. Choose by concern or browse the full herb catalog; digital books and health programs have dedicated sections below.</p>
         </div>
@@ -128,13 +129,15 @@
       </section>
 
       <section class="shop-cta">
-        <img src="assets/img/bg-cloudforest-edge.webp?v=18" alt="Cloud forest canopy in Ecuador">
-        <div>
+        <div class="shop-cta__copy">
           <p class="eyebrow">A Living Plant Archive</p>
           <h2>Meet the plants behind your blend.</h2>
           <p>Trace habitat, traditional context, and preparation notes in the Kawsaypac apothecary.</p>
-          <a class="btn btn-secondary" href="apothecary.html">Explore the Apothecary</a>
+          <a class="btn btn-primary" href="apothecary.html">Explore the Apothecary</a>
         </div>
+        <figure class="shop-cta__media">
+          <img src="assets/img/bg-cloudforest-edge.webp?v=25" alt="Cloud forest canopy in Ecuador" loading="lazy">
+        </figure>
       </section>
     </main>
 

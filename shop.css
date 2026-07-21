@@ -1,14 +1,11 @@
 .shop-hero {
   position: relative;
-  min-height: 780px;
+  min-height: 620px;
   display: grid;
   align-content: end;
-  padding: 180px max(24px, calc((100vw - 1240px) / 2)) 70px;
+  padding: 190px max(24px, calc((100vw - 1240px) / 2)) 64px;
   overflow: hidden;
-  background:
-    linear-gradient(90deg, rgba(13, 35, 22, .88) 0%, rgba(20, 48, 31, .72) 43%, rgba(20, 48, 31, .23) 76%, rgba(13, 35, 22, .42) 100%),
-    linear-gradient(180deg, rgba(13, 35, 22, .16), rgba(13, 35, 22, .5)),
-    url('assets/img/bg-paramo-band.webp?v=18') center 58% / cover no-repeat !important;
+  background: linear-gradient(180deg, #efece1 0%, var(--cream) 74%) !important;
   text-align: left;
 }
 
@@ -19,14 +16,35 @@
   width: min(590px, 58vw);
   aspect-ratio: 1;
   transform: translate(-20%, -50%);
-  border: 3px double rgba(240, 215, 123, .27);
+  border: 3px double rgba(201, 169, 66, .3);
   border-radius: 50%;
   content: '';
 }
 
-.shop-hero > *:not(.shop-float) {
+.shop-hero > *:not(.shop-accent) {
   position: relative;
   z-index: 2;
+}
+
+.shop-accent {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  opacity: .3;
+}
+
+.shop-accent--left {
+  left: -34px;
+  bottom: -26px;
+  width: clamp(120px, 13vw, 190px);
+  transform: rotate(-16deg);
+}
+
+.shop-accent--right {
+  right: -22px;
+  top: 128px;
+  width: clamp(100px, 11vw, 160px);
+  transform: rotate(16deg);
 }
 
 .shop-hero__content {
@@ -34,25 +52,24 @@
 }
 
 .shop-hero .eyebrow {
-  color: #f0d77b;
+  color: var(--olive);
 }
 
 .shop-hero h1 {
   max-width: 900px;
   margin: 0;
-  color: #fff;
+  color: var(--forest);
   font-family: var(--display);
   font-size: clamp(4rem, 7.6vw, 7.8rem);
   font-weight: 500;
   letter-spacing: -.055em;
   line-height: .88;
-  text-shadow: 0 8px 36px rgba(8, 24, 14, .34) !important;
 }
 
 .shop-hero__content > p:not(.eyebrow) {
   max-width: 620px;
   margin: 24px 0 0;
-  color: rgba(255, 255, 255, .88);
+  color: #575a52;
   font-size: 1.02rem;
 }
 
@@ -63,11 +80,43 @@
   margin-top: 26px;
 }
 
+.shop-hero__actions .btn-secondary {
+  border-color: var(--forest);
+  background: rgba(255, 255, 255, .72);
+  color: var(--forest);
+}
+
+.shop-hero__actions .btn-secondary:hover {
+  background: var(--forest);
+  color: #fff;
+}
+
 .shop-hero__actions .storefront-cart-button {
   min-height: 50px;
-  border-color: rgba(255, 255, 255, .78);
+  border-color: var(--border);
   padding-inline: 22px;
-  background: rgba(250, 249, 246, .92);
+  background: #fff;
+  color: var(--forest);
+}
+
+.shop-proof {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 18px 0 0;
+  color: #6b6d63;
+  font-size: .82rem;
+  font-weight: 550;
+}
+
+.shop-proof strong {
+  color: var(--forest);
+}
+
+.shop-proof .star {
+  color: var(--gold);
+  font-size: .95rem;
+  line-height: 1;
 }
 
 .shop-hero__index {
@@ -75,8 +124,8 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
-  margin-top: 34px;
-  border-top: 1px solid rgba(255, 255, 255, .35);
+  margin-top: 30px;
+  border-top: 1px solid var(--border);
 }
 
 .shop-hero__index a {
@@ -84,12 +133,17 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  border-right: 1px solid rgba(255, 255, 255, .24);
-  color: #fff;
+  border-right: 1px solid var(--border);
+  color: var(--forest);
   font-size: .72rem;
   font-weight: 750;
   letter-spacing: .09em;
   text-transform: uppercase;
+  transition: color .22s;
+}
+
+.shop-hero__index a:hover {
+  color: #856e21;
 }
 
 .shop-hero__index a:last-child {
@@ -102,31 +156,9 @@
 }
 
 .shop-hero__index span {
-  color: #f0d77b;
+  color: var(--gold);
   font-family: var(--display);
   font-size: 1rem;
-}
-
-.shop-float {
-  position: absolute;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.shop-float.left {
-  left: -35px;
-  bottom: -30px;
-  width: 210px;
-  transform: rotate(-18deg);
-  opacity: .48;
-}
-
-.shop-float.right {
-  right: 1vw;
-  top: 140px;
-  width: 170px;
-  transform: rotate(18deg);
-  opacity: .56;
 }
 
 .shop-shell {
@@ -191,7 +223,7 @@
 }
 
 .filter {
-  min-height: 44px;
+  min-height: 48px;
   display: inline-flex;
   flex: none;
   align-items: center;
@@ -434,42 +466,55 @@
 .shop-cta {
   position: relative;
   width: min(1420px, calc(100% - 28px));
-  min-height: 580px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: clamp(26px, 4vw, 60px);
   align-items: center;
   margin: 0 auto 30px;
   overflow: hidden;
+  border: 1px solid var(--border);
   border-radius: 30px;
-  color: #fff;
+  padding: clamp(30px, 5vw, 64px);
+  background: var(--paper);
+  color: var(--forest);
 }
 
-.shop-cta > img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(.55);
-}
-
-.shop-cta > div {
-  position: relative;
-  z-index: 2;
-  width: min(640px, 92%);
-  padding: clamp(34px, 7vw, 90px);
-}
-
-.shop-cta .eyebrow {
-  color: #f1d77d;
+.shop-cta__copy .eyebrow {
+  color: var(--olive);
 }
 
 .shop-cta h2 {
   margin: 0 0 18px;
-  color: #fff;
+  color: var(--forest);
   font-family: var(--display);
-  font-size: clamp(3rem, 6vw, 6.4rem);
+  font-size: clamp(3rem, 6vw, 6.2rem);
   font-weight: 400;
   line-height: .92;
+}
+
+.shop-cta__copy > p:not(.eyebrow) {
+  max-width: 52ch;
+  margin: 0 0 26px;
+  color: #575a52;
+}
+
+.shop-cta__media {
+  margin: 0;
+  min-height: 320px;
+  max-height: 440px;
+  overflow: hidden;
+  border-radius: 22px;
+}
+
+.shop-cta__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .8s var(--ease);
+}
+
+.shop-cta:hover .shop-cta__media img {
+  transform: scale(1.03);
 }
 
 @media (max-width: 900px) {
@@ -483,13 +528,21 @@
   .editorial-product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .shop-cta {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .shop-cta__media {
+    min-height: 260px;
+  }
 }
 
 @media (max-width: 600px) {
   .shop-hero {
-    min-height: 700px;
+    min-height: 640px;
     padding: 138px 20px 34px;
-    background-position: 63% 58% !important;
   }
 
   .shop-hero::before {
@@ -528,9 +581,6 @@
     font-size: .6rem;
     line-height: 1.2;
   }
-
-  .shop-float.left { width: 150px; }
-  .shop-float.right { width: 100px; }
 
   .shop-shell {
     padding: 60px 0 90px;
