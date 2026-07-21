@@ -5,7 +5,9 @@
   align-content: end;
   padding: 190px max(24px, calc((100vw - 1240px) / 2)) 64px;
   overflow: hidden;
-  background: linear-gradient(180deg, #efece1 0%, var(--cream) 74%) !important;
+  background:
+    linear-gradient(180deg, rgba(247,244,233,.92) 0%, rgba(247,244,233,.86) 45%, var(--cream) 96%),
+    url('assets/img/bg-highlands.webp') center 30% / cover no-repeat !important;
   text-align: left;
 }
 

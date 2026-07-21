@@ -65,3 +65,26 @@
 /* Editorial polish pass: hand-drawn accent underline + handwritten pick note. */
 .collections .section-head h2 .accent{display:inline-block;padding-bottom:12px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M3 9 C 28 3, 62 11, 117 5' fill='none' stroke='%23C9A942' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat left bottom/100% 10px}
 .hand-note{position:absolute;z-index:3;right:14px;bottom:12px;padding:7px 13px;border-radius:999px;background:rgba(250,249,246,.94);box-shadow:0 8px 20px rgba(31,58,42,.14);color:#7a5f16;font-family:Caveat,'Playfair Display',cursive;font-size:1.12rem;line-height:1;transform:rotate(-3deg)}
+
+/* v26: concern section flanking sprites (varied sizes) */
+.concern-section{position:relative;overflow:hidden}
+.concern-sprites{position:absolute;top:0;bottom:0;width:150px;pointer-events:none;display:flex;flex-direction:column;justify-content:space-around;align-items:center;opacity:.5;z-index:1}
+.concern-sprites-left{left:-28px}
+.concern-sprites-right{right:-28px}
+.concern-sprites img{display:block;height:auto}
+.concern-sprites-left img:nth-child(1){transform:rotate(-8deg) translateX(-12px)}
+.concern-sprites-left img:nth-child(3){transform:rotate(6deg)}
+.concern-sprites-right img:nth-child(1){transform:rotate(10deg) translateX(14px)}
+.concern-sprites-right img:nth-child(3){transform:rotate(-6deg)}
+@media(max-width:900px){.concern-sprites{display:none}}
+/* v26: concern tiles interactive with herb imagery */
+.concern-tile{position:relative;overflow:hidden;transition:background .35s ease,color .35s ease}
+.concern-ico{position:absolute;right:14px;bottom:12px;width:52px;height:52px;border-radius:50%;overflow:hidden;opacity:0;transform:translateY(8px) scale(.85);transition:opacity .35s ease,transform .35s ease;background:rgba(255,255,255,.6)}
+.concern-ico img{width:100%;height:100%;object-fit:contain;padding:6px;box-sizing:border-box}
+.concern-tile:hover,.concern-tile:focus-visible{background:var(--forest, #1c3a24);color:#f7f3ea}
+.concern-tile:hover strong,.concern-tile:focus-visible strong{color:#f7f3ea}
+.concern-tile:hover .concern-ico,.concern-tile:focus-visible .concern-ico{opacity:1;transform:translateY(0) scale(1)}
+/* v26: newsletter email icon */
+.email-wrap{position:relative;display:flex;flex:1}
+.email-wrap .email-ico{position:absolute;left:18px;top:50%;transform:translateY(-50%);width:20px;height:20px;color:#7a856f;pointer-events:none}
+.email-wrap input{padding-left:48px !important;width:100%}
