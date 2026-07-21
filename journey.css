@@ -65,3 +65,10 @@
 .j3l{position:absolute;object-fit:contain;will-change:transform,opacity;max-width:none}
 .j3l[data-l$="-base"],.j3l[data-l="s1-sky"]{object-fit:cover}
 .journey-static .j3-s2,.journey-static .j3-s3{display:none}
+
+/* v28: display title between clouds and peak */
+.j3-title{position:absolute;left:50%;top:26%;transform:translateX(-50%);z-index:2;
+  font-family:'Fraunces','Cormorant Garamond',Georgia,serif;font-weight:500;
+  font-size:clamp(90px,13vw,240px);letter-spacing:.02em;color:#fdf9ee;
+  text-shadow:0 4px 40px rgba(30,40,30,.35), 0 0 90px rgba(255,244,214,.4);
+  white-space:nowrap;pointer-events:none}
